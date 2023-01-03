@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +27,10 @@ public class LeaveHome : MonoBehaviour
         else
         {
             canvas.SetActive(false);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
