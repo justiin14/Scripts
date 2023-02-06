@@ -1,22 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DriveCar : MonoBehaviour
 {
     public GameObject carCamera, fpsController, canvasDrive, canvasSneak;
+    AudioSource audioSource;
     Rigidbody rb;
+    
 
     float horizontal = 0f, vertical = 0f;
-    float speed = 7.0f;
-    float rotationSpeed = 30.0f;
+    float speed = 10.0f;
+    float rotationSpeed = 40.0f;
 
     public static bool stop = false;
 
     private void Start()
     {
-        //play car running sound
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,22 +26,22 @@ public class DriveCar : MonoBehaviour
         vertical = 0;
         if (!stop)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 horizontal = -1;
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 horizontal = 1;
             }
 
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 vertical = 1;
                 transform.Translate(0, 0, vertical * Time.deltaTime * speed);
                 transform.Rotate(0, horizontal * Time.deltaTime * rotationSpeed, 0);
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 vertical = -1;
                 transform.Translate(0, 0, vertical * Time.deltaTime * speed);
@@ -61,14 +62,13 @@ public class DriveCar : MonoBehaviour
 
     IEnumerator WaitAndExit()
     {
-        //play stop engine sound
-        yield return new WaitForSeconds(2);
+        audioSource.Stop();
         canvasDrive.SetActive(false);
-        carCamera.SetActive(false);
+        yield return new WaitForSeconds(1);
 
+        carCamera.SetActive(false);
         fpsController.SetActive(true);
         rb.isKinematic = true;
         canvasSneak.SetActive(true);
-        //play slam door sound
     }
 }
