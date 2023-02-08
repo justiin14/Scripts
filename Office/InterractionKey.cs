@@ -13,7 +13,6 @@ public class InterractionKey : MonoBehaviour
     {
         gameObjectPosition = gameObject.GetComponent<Transform>().position;
         audioSource = gameObject.GetComponent<AudioSource>();
-        
     }
 
     void Update()

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LeaveRoom : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class LeaveRoom : MonoBehaviour
             canvas.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneChanger.LoadNextScene();
             }
         }
         else

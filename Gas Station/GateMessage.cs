@@ -12,10 +12,6 @@ public class GateMessage : MonoBehaviour
 
     bool isTransitioning=false;
 
-    private void Start()
-    {
-        nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-    }
     void Update()
     {
         distance = Vector3.Distance(transform.position, fpsController.transform.position);
@@ -40,6 +36,6 @@ public class GateMessage : MonoBehaviour
         {
             yield return null;
         }
-        SceneManager.LoadScene(nextScene);
+        SceneChanger.LoadNextScene();
     }
 }

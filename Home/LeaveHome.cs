@@ -21,7 +21,7 @@ public class LeaveHome : MonoBehaviour
             canvas.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneChanger.LoadNextScene();
             }
         }
         else
@@ -30,7 +30,7 @@ public class LeaveHome : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneChanger.LoadNextScene();
         }
     }
 }
