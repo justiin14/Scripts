@@ -4,8 +4,8 @@ using UnityEngine;
 public class FpsManager : MonoBehaviour
 {
     List<Vector3> positions;
-
     CharacterController characterController;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();

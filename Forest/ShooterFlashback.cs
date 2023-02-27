@@ -1,49 +1,52 @@
+using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class ShooterFlashback : MonoBehaviour
 {
-    //public GameObject shootingRange, wolf;
-    //public Animator animator;
-    //public AudioSource audioSource;
-    //bool triggered = false;
+    public GameObject flashbackObjects, fpsController, box, cam;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
-    //private void Start()
-    //{
-    //    animator = wolf.GetComponent<Animator>();
-    //    audioSource = GetComponent<AudioSource>();
-    //}
+    Vector3 fpsControllerPosition, boxPosition, temp;
+    float distanceToFlashbackTrigger = 20f;
+    bool isFlashbackCompleted = false;
 
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Alpha9))
-    //    {
-    //        Shooter.targetsHit = 10;
-    //    }
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        boxPosition = box.transform.position;
+    }
 
-    //    if(Shooter.targetsHit == 10 && !triggered)
-    //    {
-    //        Flashback.startFlashback = true;
-    //        StartCoroutine(WaitForWolfAppearance());
-    //        triggered = true;
-    //    }
+    private void Update()
+    {
+        fpsControllerPosition = fpsController.transform.position;
+        if(Vector3.Distance(fpsControllerPosition, boxPosition) < distanceToFlashbackTrigger && !isFlashbackCompleted)
+        {
+            StartCoroutine(StartShootingFlashback());
+            StartCoroutine(EndShootingFlashback());
+        }
+    }
 
-    //    if (Shooter.isWolfDead)
-    //    {
-    //        animator.SetTrigger("Die");
-    //    }
-    //}
+    IEnumerator StartShootingFlashback()
+    {
+        audioSource.PlayOneShot(audioClip);
+        Flashback.startFlashback = true;
+        isFlashbackCompleted = true;
+        //FirstPersonController.m_CharacterController.enabled = false;
 
-    //IEnumerator WaitForWolfAppearance()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    shootingRange.SetActive(false);
-    //    wolf.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        flashbackObjects.SetActive(true);
 
-    //    yield return new WaitForSeconds(1f);
-    //    if (!Shooter.isWolfDead)
-    //    {
-    //        audioSource.PlayOneShot(Resources.Load<AudioClip>("Audio/AimForTheHead"));
-    //    }
+    }
 
-    //}
+    IEnumerator EndShootingFlashback()
+    {
+        yield return new WaitForSeconds(5f);
+        Flashback.startFlashback = true;
+
+        yield return new WaitForSeconds(.25f);
+        flashbackObjects.SetActive(false);
+        //FirstPersonController.m_CharacterController.enabled = true;
+    }
 }
