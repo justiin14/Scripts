@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Threading;
 using UnityEngine;
 
 public class InterractionKey : MonoBehaviour
 {
     public static bool hasSeated = false, hasDialogEnded = false;
-    public GameObject fpsController, personaj, canvas, canvasSitUp;
+    public GameObject fpsController, personaj, canvas, canvasDialogue;
     float distanceToInterract = 3f;
     AudioSource audioSource;
     Vector3 fpsPosition, gameObjectPosition;
@@ -24,6 +25,7 @@ public class InterractionKey : MonoBehaviour
             canvas.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                StartCoroutine(DisplayText());
                 audioSource.Play();
                 fpsController.SetActive(false);
                 hasSeated = true;
@@ -35,19 +37,19 @@ public class InterractionKey : MonoBehaviour
             if (hasSeated && !hasDialogEnded) 
             {
                 personaj.GetComponent<Animator>().enabled = true;
-                if (!audioSource.isPlaying)
-                {
-                    canvasSitUp.SetActive(true);
-                    if (Input.GetKey(KeyCode.E))
-                    {
-                        fpsController.SetActive(true);
-                        canvasSitUp.SetActive(false);
-                        hasDialogEnded = true;
-                        personaj.GetComponent<Animator>().enabled = false;
-                    }
-                }
             }
         }
+
+        if (hasDialogEnded)
+        {
+            SceneChanger.LoadNextScene();
+        }
+    }
+
+    IEnumerator DisplayText()
+    {
+        yield return new WaitForSeconds(1f);
+        canvasDialogue.SetActive(true);
     }
 }
 

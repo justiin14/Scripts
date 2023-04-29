@@ -13,8 +13,8 @@ public class FpsManager : MonoBehaviour
         {
             new Vector3(123, 5, -30),
             new Vector3(-55, 5, -33),
-            new Vector3(-20, 5,   9),
-            new Vector3(-22, 5, 160)
+            new Vector3( 65, 5,  70),
+            new Vector3( 20, 5, 120)
         };
     }
 

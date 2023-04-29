@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class MenuButtons : MonoBehaviour
 {
+    public GameObject dialogueSystem;
+
     public void StartGame()
     {
-        SceneChanger.LoadNextScene();
+        dialogueSystem.SetActive(true);
         gameObject.SetActive(false);
     }
 

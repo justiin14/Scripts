@@ -6,7 +6,7 @@ public class Shooter : MonoBehaviour
     public AudioSource audioSource, audioSourceGun;
     public AudioClip gunShotClip;
            TargetFactory factory;
-           float force = 50f;
+    readonly float force = 50f;
 
     public static int targetsHit = 0;
     public static bool isRifleEquipped = false;

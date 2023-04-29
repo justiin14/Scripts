@@ -9,7 +9,7 @@ public class ShooterFlashback : MonoBehaviour
     public AudioClip audioClip;
 
     Vector3 fpsControllerPosition, boxPosition, temp;
-    float distanceToFlashbackTrigger = 20f;
+    float distanceToFlashbackTrigger = 40f;
     bool isFlashbackCompleted = false;
 
     private void Start()
