@@ -31,7 +31,7 @@ public class StoryTeller : MonoBehaviour
             {
                 if (i == 1)
                 {
-                    GeneralVariables.carSong = (AudioClip)Resources.Load("2");
+                    Tracker.carSong = (AudioClip)Resources.Load("2");
                 }
                 isTransitioning = true;
                 DisplayChoice(right);
@@ -41,7 +41,7 @@ public class StoryTeller : MonoBehaviour
             {
                 if (i == 1)
                 {
-                    GeneralVariables.carSong = (AudioClip)Resources.Load("1");
+                    Tracker.carSong = (AudioClip)Resources.Load("1");
                 }
                 isTransitioning = true;
                 DisplayChoice(left);

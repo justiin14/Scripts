@@ -20,7 +20,7 @@ public class ShooterUIManager : MonoBehaviour
     {
         fpsPosition = fpsController.transform.position;
 
-        if(Vector3.Distance(fpsPosition, boxPosition) < 3f && !Shooter.isRifleEquipped)
+        if(Vector3.Distance(fpsPosition, boxPosition) < 3f && !Shooter.isRifleEquipped && !Tracker.isMissionInProgress)
         {
             canvasEquipRifle.SetActive(true);
             if (Input.GetKeyUp(KeyCode.E))
@@ -41,6 +41,7 @@ public class ShooterUIManager : MonoBehaviour
                 if (Shooter.targetsHit == 10)
                 {
                     isMissionCompleted = true;
+                    Tracker.missionsCompleted++;
                     Destroy(canvasHitTargets);
                     StartCoroutine(EndShootingSession());
                 }

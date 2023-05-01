@@ -46,6 +46,8 @@ public class KickBall : MonoBehaviour
         if(crossbars == 3 && goals == 3)
         {
             Destroy(canvasMission);
+            Tracker.missionsCompleted++;
+            Tracker.isMissionInProgress = false;
         }
     }
 

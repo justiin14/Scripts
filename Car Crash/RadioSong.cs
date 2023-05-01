@@ -8,8 +8,8 @@ public class RadioSong : MonoBehaviour
  
     void Start()
     {
-        Debug.Log(GeneralVariables.carSong);
+        Debug.Log(Tracker.carSong);
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(GeneralVariables.carSong);
+        audioSource.PlayOneShot(Tracker.carSong);
     }
 }

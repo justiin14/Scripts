@@ -20,6 +20,7 @@ public class TriggerFootballMemory : MonoBehaviour
     {
         if (Vector3.Distance(fpsController.transform.position, ball.transform.position) <= distance && !triggered)
         {
+            Tracker.isMissionInProgress = true;
             Flashback.startFlashback = true;
             audioSource.PlayOneShot(audioClip);
             StartCoroutine(StartAnimation());

@@ -21,7 +21,7 @@ public class ShooterFlashback : MonoBehaviour
     private void Update()
     {
         fpsControllerPosition = fpsController.transform.position;
-        if(Vector3.Distance(fpsControllerPosition, boxPosition) < distanceToFlashbackTrigger && !isFlashbackCompleted)
+        if(Vector3.Distance(fpsControllerPosition, boxPosition) < distanceToFlashbackTrigger && !isFlashbackCompleted && !Tracker.isMissionInProgress)
         {
             StartCoroutine(StartShootingFlashback());
             StartCoroutine(EndShootingFlashback());
