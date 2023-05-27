@@ -5,6 +5,7 @@ public class TriggerFootballMemory : MonoBehaviour
 {
     public GameObject boy, dad, ball, fpsController, realBall, canvasFootballMision;
     public AudioClip audioClip;
+    public CharacterController cc;
            AudioSource audioSource;
            Rigidbody rb;
     float distance = 30f;
@@ -14,12 +15,15 @@ public class TriggerFootballMemory : MonoBehaviour
     {
         rb = ball.GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        cc = fpsController.GetComponent<CharacterController>();
     }
 
     private void Update()
     {
         if (Vector3.Distance(fpsController.transform.position, ball.transform.position) <= distance && !triggered)
         {
+            cc.SimpleMove(new Vector3(0, 0, 0));
+            cc.enabled = false;
             Tracker.isMissionInProgress = true;
             Flashback.startFlashback = true;
             audioSource.PlayOneShot(audioClip);
@@ -55,5 +59,6 @@ public class TriggerFootballMemory : MonoBehaviour
         yield return new WaitForSeconds(1f);
         realBall.SetActive(true);
         canvasFootballMision.SetActive(true);
+        cc.enabled = true;
     }
 }

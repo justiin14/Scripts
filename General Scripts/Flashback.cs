@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -30,9 +29,7 @@ public class Flashback : MonoBehaviour
         {
             StartMemoryFlash();
         }
-
     }
-
     private void StartMemoryFlash()
     {
         if (!done) //fade to white

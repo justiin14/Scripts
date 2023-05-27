@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class FadeEffect : MonoBehaviour
 {
     public static Animator animator;

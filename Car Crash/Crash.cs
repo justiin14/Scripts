@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Crash : MonoBehaviour
 {
-    public Camera cam;
     public GameObject canvasGame;
 
     Rigidbody rb;
     AudioSource audioSource;
     Vector3 torqueForce = 300 * new Vector3(50, 5, -57.5f);
 
-    int drivingSpeed = 50, timeOfCrash = 8, upForce = 4;
+    int drivingSpeed = 50, timeOfCrash = 8;
     float soundDelay=2.7f;
     bool hasCrashed=false, hasPlayed=false;
 

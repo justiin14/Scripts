@@ -12,7 +12,6 @@ public class MenuButtons : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quitted game");
         Application.Quit();
     }
 }

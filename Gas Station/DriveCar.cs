@@ -4,7 +4,8 @@ using UnityEngine;
 public class DriveCar : MonoBehaviour
 {
     public GameObject carCamera, fpsController, canvasDrive, canvasSneak;
-    //AudioSource audioSource;
+
+    AudioSource audioSource;
     Rigidbody rb;
     
 
@@ -17,7 +18,7 @@ public class DriveCar : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class DriveCar : MonoBehaviour
         {
             StartCoroutine(WaitAndExit());
         }
-        
+
     }
 
     void OnCollisionStay(Collision collision)
@@ -62,6 +63,7 @@ public class DriveCar : MonoBehaviour
 
     IEnumerator WaitAndExit()
     {
+        audioSource.mute = true;
         canvasDrive.SetActive(false);
         yield return new WaitForSeconds(1);
 

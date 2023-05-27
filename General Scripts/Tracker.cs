@@ -14,4 +14,12 @@ public class Tracker : MonoBehaviour
     public static bool isFishCollected = false;
     public static bool isFpsInsideWater = false;
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            missionsCompleted = 3;
+        }
+    }
 }
