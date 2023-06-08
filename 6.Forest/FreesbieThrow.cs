@@ -4,13 +4,15 @@ using UnityEngine;
 public class FreesbieThrow : MonoBehaviour
 {
     public GameObject freesbie, kid, mom, fpsController, canopy;
+    public AudioSource audioSource;
     CharacterController characterController;
     Vector3 fpsPosition, canopyPosition;
     float speed = 15f;
 
-    bool isFlashbackCompleted = false;
+    bool triggered = false;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         canopyPosition = canopy.transform.position;
         characterController = fpsController.GetComponent<CharacterController>();
     }
@@ -18,10 +20,11 @@ public class FreesbieThrow : MonoBehaviour
     void Update()
     {
         fpsPosition = fpsController.transform.position;
-        if (Vector3.Distance(fpsPosition, canopyPosition) < 50f && !isFlashbackCompleted)
+        if (Vector3.Distance(fpsPosition, canopyPosition) < 40f && !triggered)
         {
             Flashback.startFlashback = true;
-            isFlashbackCompleted = true;
+            audioSource.Play();
+            triggered = true;
             characterController.SimpleMove(Vector3.zero);
             characterController.enabled = false;
             StartCoroutine(WaitForThrow());

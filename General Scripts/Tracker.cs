@@ -21,5 +21,16 @@ public class Tracker : MonoBehaviour
         {
             missionsCompleted = 3;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            KickBall.goals = 3;
+            KickBall.crossbars = 3;
+            missionsCompleted++;
+            Debug.Log(missionsCompleted);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            isFishingRodCollected = true;
+        }
     }
 }

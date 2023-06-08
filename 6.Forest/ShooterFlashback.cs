@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class ShooterFlashback : MonoBehaviour
 {
@@ -9,9 +8,9 @@ public class ShooterFlashback : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
 
-    Vector3 fpsControllerPosition, boxPosition, temp;
-    float distanceToFlashbackTrigger = 40f;
-    bool isFlashbackCompleted = false;
+    Vector3 fpsControllerPosition, boxPosition;
+    float distanceToFlashbackTrigger = 30f;
+    bool triggered = false;
 
     private void Start()
     {
@@ -23,7 +22,8 @@ public class ShooterFlashback : MonoBehaviour
     private void Update()
     {
         fpsControllerPosition = fpsController.transform.position;
-        if(Vector3.Distance(fpsControllerPosition, boxPosition) < distanceToFlashbackTrigger && !isFlashbackCompleted && !Tracker.isMissionInProgress)
+        if(Vector3.Distance(fpsControllerPosition, boxPosition) < distanceToFlashbackTrigger 
+            && !triggered && !Tracker.isMissionInProgress)
         {
             characterController.SimpleMove(new Vector3(0, 0, 0));
             characterController.enabled = false;
@@ -36,7 +36,7 @@ public class ShooterFlashback : MonoBehaviour
     {
         audioSource.PlayOneShot(audioClip);
         Flashback.startFlashback = true;
-        isFlashbackCompleted = true;
+        triggered = true;
 
         yield return new WaitForSeconds(.5f);
         flashbackObjects.SetActive(true);

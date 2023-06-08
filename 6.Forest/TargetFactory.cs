@@ -7,7 +7,7 @@ public class TargetFactory
         switch (tag)
         {
             case "Target":
-                return new GlassTarget();
+                return new HitTarget();
             case "Terrain":
                 return new TerrainTarget();
             case "Barrel":
@@ -24,7 +24,7 @@ public abstract class Target
     public abstract AudioClip GetSoundClip();
 }
 
-public class GlassTarget : Target
+public class HitTarget : Target
 {
     public override AudioClip GetSoundClip()
     {

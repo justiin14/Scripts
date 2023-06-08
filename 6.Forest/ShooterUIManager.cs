@@ -40,8 +40,8 @@ public class ShooterUIManager : MonoBehaviour
                 hits.text = Shooter.targetsHit.ToString();
                 if (Shooter.targetsHit == 10)
                 {
-                    isMissionCompleted = true;
                     Tracker.missionsCompleted++;
+                    isMissionCompleted = true;
                     Destroy(canvasHitTargets);
                     StartCoroutine(EndShootingSession());
                 }

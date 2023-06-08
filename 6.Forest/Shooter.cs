@@ -32,7 +32,7 @@ public class Shooter : MonoBehaviour
                 if (hit.collider.CompareTag("Target"))
                 {
                     targetsHit++;
-
+                    audioSource.PlayOneShot(target.GetSoundClip());
                     Rigidbody rb = hit.collider.gameObject.GetComponent<Rigidbody>();
                     Vector3 direction = hit.point - rb.position;
 

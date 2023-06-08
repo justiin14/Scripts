@@ -17,7 +17,7 @@ public class Fishing : MonoBehaviour
     void Update()
     {
         fpsPosition = fpsController.transform.position;
-
+        
         if (Vector3.Distance(seatPosition, fpsPosition) < 3f && Tracker.isFishingRodCollected && !Tracker.isFishCollected)
         {
             startFishingCanvas.SetActive(true);
@@ -51,17 +51,5 @@ public class Fishing : MonoBehaviour
         characterController.enabled = true;
         Tracker.isFishCollected = true;
         Tracker.missionsCompleted++;
-    }
-
-    void OnGUI()
-    {
-        if (Vector3.Distance(seatPosition, fpsPosition) < 3f)
-        {
-            if (!Tracker.isFishingRodCollected  && !Tracker.isMissionInProgress)
-            {
-                GUI.skin.label.fontSize = 30;
-                GUI.Label(new Rect(50, 50, 600, 600), "Check the shed for the fishing rode");
-            }
-        }
     }
 }

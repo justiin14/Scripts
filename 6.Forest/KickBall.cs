@@ -9,9 +9,10 @@ public class KickBall : MonoBehaviour
            Vector3 initialPosition;
            Rigidbody rb;
     
-    int crossbars = 0, goals = 0;
+    public static int crossbars = 0, goals = 0;
     float force = 15.0f; 
     float distance = 2.0f;
+    bool incremented = false;
 
     private void Start()
     {
@@ -43,11 +44,12 @@ public class KickBall : MonoBehaviour
             }
         }
 
-        if(crossbars == 3 && goals == 3)
+        if(crossbars == 3 && goals == 3 && !incremented)
         {
             Destroy(canvasMission);
             Tracker.missionsCompleted++;
             Tracker.isMissionInProgress = false;
+            incremented = true;
         }
     }
 
