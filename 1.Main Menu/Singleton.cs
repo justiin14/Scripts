@@ -29,7 +29,7 @@ public class Singleton : MonoBehaviour
     private void Update()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.buildIndex == 2)
+        if (currentScene.buildIndex >= 3)
         {
             Destroy(gameObject);
         }

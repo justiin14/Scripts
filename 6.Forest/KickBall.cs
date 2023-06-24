@@ -12,7 +12,7 @@ public class KickBall : MonoBehaviour
     public static int crossbars = 0, goals = 0;
     float force = 15.0f; 
     float distance = 2.0f;
-    bool incremented = false;
+    public static bool incremented = false;
 
     private void Start()
     {

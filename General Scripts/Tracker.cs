@@ -1,11 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tracker : MonoBehaviour
 {
-    //Car crash
-    public static AudioClip carSong;
-
-
     //missions
     public static int missionsCompleted = 0;
 
@@ -13,6 +10,18 @@ public class Tracker : MonoBehaviour
     public static bool isFishingRodCollected = false;
     public static bool isFishCollected = false;
     public static bool isFpsInsideWater = false;
+
+    // for save system
+
+    public int level, missions;
+    public bool footballTriggered;
+    public bool kickBallIncremented;
+
+    public bool freesbieThrowTriggered;
+    public bool fishCollected;
+
+    public bool shooterTriggered;
+    public bool shooterCompleted;
 
 
     private void Update()
@@ -32,5 +41,43 @@ public class Tracker : MonoBehaviour
         {
             isFishingRodCollected = true;
         }
+    }
+
+    public void Save()
+    {
+        level = SceneManager.GetActiveScene().buildIndex;
+        missions = missionsCompleted;
+
+        footballTriggered = TriggerFootballMemory.triggered;
+        kickBallIncremented = KickBall.incremented;
+
+        freesbieThrowTriggered = FreesbieThrow.triggered;
+        fishCollected = isFishCollected;
+
+        shooterTriggered = ShooterFlashback.triggered;
+        shooterCompleted = ShooterUIManager.isMissionCompleted;
+
+        SaveSystem.SaveData(this);
+    }
+
+    public void Load()
+    {
+        Data data = SaveSystem.LoadSave();
+
+        level = data.level;
+        missionsCompleted = data.missionsCompleted;
+        SceneManager.LoadScene(level);
+
+        //for football mission
+        TriggerFootballMemory.triggered = data.footballTriggered;
+        KickBall.incremented = data.kickBallIncremented;
+
+        //for shooting mission
+        ShooterFlashback.triggered = data.shooterTriggered;
+        ShooterUIManager.isMissionCompleted = data.shooterCompleted;
+
+        //for fishing mission
+        FreesbieThrow.triggered = data.freesbieThrowTriggered;
+        isFishCollected = data.isFishCollected;
     }
 }

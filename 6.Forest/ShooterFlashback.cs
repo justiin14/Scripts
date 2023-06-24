@@ -10,7 +10,7 @@ public class ShooterFlashback : MonoBehaviour
 
     Vector3 fpsControllerPosition, boxPosition;
     float distanceToFlashbackTrigger = 30f;
-    bool triggered = false;
+    public static bool triggered = false;
 
     private void Start()
     {

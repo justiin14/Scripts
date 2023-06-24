@@ -75,7 +75,7 @@ public class StoryTeller : MonoBehaviour
         //play disappear animation for all items on screen
         left.text = "";
         right.text = "";
-        middle.text = story[0];
+        middle.text = story[1];
         instruction.text = "";
         hasChosen = true;
     }

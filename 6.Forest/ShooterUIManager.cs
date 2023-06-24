@@ -9,7 +9,7 @@ public class ShooterUIManager : MonoBehaviour
     public Text hits;
     Vector3 boxPosition, fpsPosition;
 
-    bool isMissionCompleted;
+    public static bool isMissionCompleted;
 
     private void Start()
     {
@@ -77,7 +77,10 @@ public class ShooterUIManager : MonoBehaviour
         canvasCrosshair.SetActive(true);
         fpsController.SetActive(false);
         canvasEquipRifle.SetActive(false);
-        canvasHitTargets.SetActive(true);
+
+        if(!isMissionCompleted)
+            canvasHitTargets.SetActive(true);
+
         yield return null;
     }
 }

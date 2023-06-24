@@ -9,7 +9,7 @@ public class FreesbieThrow : MonoBehaviour
     Vector3 fpsPosition, canopyPosition;
     float speed = 15f;
 
-    bool triggered = false;
+    public static bool triggered = false;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

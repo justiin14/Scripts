@@ -9,7 +9,7 @@ public class TriggerFootballMemory : MonoBehaviour
            AudioSource audioSource;
            Rigidbody rb;
     float distance = 30f;
-    bool triggered = false;
+    public static bool triggered = false;
 
     private void Start()
     {
